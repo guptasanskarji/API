@@ -10,12 +10,13 @@ dotenv.config();
 
 const app = express();
 
-// Connect to MongoDB
+// Connect to MongoDB using mongoose require from "./database/mongodb.js"
 connect.createconnection();
 
 app.use(bodyParser.json());
 
 // Routes
+// NOte:  I Created 3 different API's for 3 different models and each API perform get, post and put method to retrieve, store and update data in database
 app.use('/api/items', itemRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/students', studentRoutes);
