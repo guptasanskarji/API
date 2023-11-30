@@ -24,7 +24,7 @@ exports.getItem = async (req, res) => {
 };
 
 exports.createItem = async (req, res) => {
-  const newItem = new Item({ name: req.body.name });
+  const newItem = new Item({ name: req.body.name, price: req.body.price, description: req.body.description });
 
   try {
     const savedItem = await newItem.save();
@@ -36,7 +36,7 @@ exports.createItem = async (req, res) => {
 
 exports.updateItem = async (req, res) => {
   try {
-    const updatedItem = await Item.findByIdAndUpdate(req.params.id, { name: req.body.name }, { new: true });
+    const updatedItem = await Item.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!updatedItem) {
       return res.status(404).json({ message: 'Item not found' });
     }
